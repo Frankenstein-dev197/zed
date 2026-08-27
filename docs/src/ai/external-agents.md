@@ -1,11 +1,11 @@
 ---
-title: External Agents - Zed
-description: Install and use ACP-integrated External Agents such as Claude, Codex, OpenCode, Copilot, Cursor, and Pi Coding Agent in Zed.
+title: External Agents - Cortex Studio
+description: Install and use ACP-integrated External Agents such as OpenHands, Claude, Codex, OpenCode, Copilot, Cursor, and Pi Coding Agent in Cortex Studio.
 ---
 
 # External Agents
 
-External Agents are agents that integrate with Zed through the [Agent Client Protocol (ACP)](https://agentclientprotocol.com). Zed hosts the thread in the [Agent Panel](./agent-panel.md) and [Threads Sidebar](./parallel-agents.md#threads-sidebar), while the External Agent usually owns its own runtime, auth, model selection, tools, and native configuration.
+External Agents are agents that integrate with Cortex Studio through the [Agent Client Protocol (ACP)](https://agentclientprotocol.com). Cortex Studio hosts the thread in the [Agent Panel](./agent-panel.md) and [Threads Sidebar](./parallel-agents.md#threads-sidebar), while the External Agent usually owns its own runtime, auth, model selection, tools, and native configuration.
 
 Use [Terminal Threads](./terminal-threads.md) instead when you want to run a CLI or TUI directly in a terminal-backed thread.
 
@@ -15,7 +15,7 @@ For Zed-hosted models and Zed-managed AI features, see [AI Privacy](./privacy-an
 
 ## Install from the ACP Registry {#registry}
 
-The ACP Registry is the primary way to install common External Agents in Zed.
+The ACP Registry is the primary way to install common External Agents in Cortex Studio.
 
 Open the registry with {#action zed::AcpRegistry}, or open [Agent Settings](./agent-settings.md) with {#action agent::OpenSettings}, go to the **External Agents** page, click `Add Agent`, and choose `Install from Registry`.
 
@@ -25,6 +25,7 @@ After installation, the agent appears in the new-thread menu in the Agent Panel 
 
 Common External Agents include:
 
+- OpenHands
 - Claude
 - Codex
 - OpenCode
@@ -113,6 +114,27 @@ To configure it manually, install the [Poolside Agent CLI](https://github.com/po
 ```
 
 See [Poolside's Zed documentation](https://docs.poolside.ai/tools/zed) for more setup details.
+
+## OpenHands {#openhands}
+
+OpenHands can run inside Cortex Studio through the existing External Agent and ACP support. No additional panel or custom interface is required. Install the OpenHands CLI so that `uvx` is available, then add this entry under `agent_servers` in the settings file:
+
+```json [settings]
+{
+  "agent_servers": {
+    "OpenHands": {
+      "type": "custom",
+      "command": "uvx",
+      "args": ["openhands", "acp"],
+      "env": {}
+    }
+  }
+}
+```
+
+After saving the settings, OpenHands appears in the existing agent selector. Its conversation, file operations, terminal requests, permission prompts and session events are rendered by the current Agent Panel. OpenHands owns its agent runtime and provider configuration; Cortex Studio remains responsible for the ACP connection, the selected project, the existing permissions and the visible diff review.
+
+For a safer setup, run OpenHands against a dedicated project workspace or container and keep host-wide file access, unrestricted network access and destructive commands behind explicit permissions. See the official [OpenHands Zed integration guide](https://docs.openhands.dev/openhands/usage/cli/ide/zed) for installation and provider configuration.
 
 ## Start an External Agent Thread {#start-thread}
 
