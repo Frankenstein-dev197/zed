@@ -134,7 +134,7 @@ OpenHands can run inside Cortex Studio through the existing External Agent and A
 
 After saving the settings, OpenHands appears in the existing agent selector. Its conversation, file operations, terminal requests, permission prompts and session events are rendered by the current Agent Panel. OpenHands owns its agent runtime and provider configuration; Cortex Studio remains responsible for the ACP connection, the selected project, the existing permissions and the visible diff review.
 
-For a safer setup, run OpenHands against a dedicated project workspace or container and keep host-wide file access, unrestricted network access and destructive commands behind explicit permissions. See the official [OpenHands Zed integration guide](https://docs.openhands.dev/openhands/usage/cli/ide/zed) for installation and provider configuration.
+For a safer setup, open the project through Cortex Studio’s existing Dev Container or remote-workspace support, then run OpenHands against that selected workspace. This keeps the agent’s files and terminal inside the project environment instead of granting implicit access to the host. Keep host-wide file access, unrestricted network access and destructive commands behind explicit permissions; do not add `--always-approve` to the default command. Cortex Studio’s existing ACP permission prompts and diff review remain active. See the official [OpenHands Zed integration guide](https://docs.openhands.dev/openhands/usage/cli/ide/zed) for installation and provider configuration.
 
 ## Start an External Agent Thread {#start-thread}
 
