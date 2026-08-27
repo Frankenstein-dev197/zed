@@ -15,7 +15,7 @@
     "dark": "One Dark",
   },
   "agent_servers": {
-    "OpenHands": {
+    "Cortex AI": {
       "type": "custom",
       "command": "uvx",
       "args": ["openhands", "acp"],
