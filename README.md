@@ -1,48 +1,79 @@
 # Cortex Studio
 
-[![Cortex Studio](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zed-industries/zed/main/assets/badge/v0.json)](https://zed.dev)
-[![CI](https://github.com/zed-industries/zed/actions/workflows/run_tests.yml/badge.svg)](https://github.com/zed-industries/zed/actions/workflows/run_tests.yml)
+<p align="center">
+  <img src="assets/images/cortex-studio-logo.svg" alt="Logo Cortex Studio" width="180" />
+</p>
 
-Welcome to Cortex Studio, a high-performance, multiplayer code editor built on the Zed open-source foundation, from the creators of [Atom](https://github.com/atom/atom) and [Tree-sitter](https://github.com/tree-sitter/tree-sitter).
+Cortex Studio est un éditeur de code desktop pour macOS, Linux et Windows. Il réunit l’édition de code, la navigation dans les projets, le terminal, Git, les serveurs de langage, le débogage, les extensions et les outils d’intelligence artificielle dans un environnement unique.
 
----
+Le projet est **créé et initié par Abdoulaye Coumbassa**. Son objectif est de proposer une expérience de développement directe, performante et adaptée aux personnes qui veulent écrire, comprendre, tester et améliorer leur code depuis un seul espace de travail.
 
-### Installation
+## Ce que Cortex Studio apporte
 
-On macOS, Linux, and Windows you can [download Cortex Studio](https://zed.dev/download) or install it via your local package manager ([macOS](https://zed.dev/docs/installation#macos)/[Linux](https://zed.dev/docs/linux#installing-via-a-package-manager)/[Windows](https://zed.dev/docs/windows#package-managers)).
+| Domaine | Expérience proposée |
+|---|---|
+| Édition | Écrire et modifier du code avec coloration syntaxique, navigation, multi-buffer et assistance du langage. |
+| Projets | Ouvrir des dossiers, organiser plusieurs espaces de travail et retrouver rapidement fichiers, symboles et actions. |
+| Terminal | Exécuter les commandes du projet dans le terminal intégré et suivre les processus directement depuis l’éditeur. |
+| Git | Consulter les changements, travailler avec des branches et des worktrees, examiner les diffs et préparer les commits. |
+| Langages | Utiliser les serveurs de langage, le formatage, les diagnostics, les références et les refactorings disponibles. |
+| Débogage | Lancer des sessions de débogage et suivre les erreurs au plus près du code concerné. |
+| Extensions | Étendre l’environnement avec des langages, thèmes, outils et intégrations supplémentaires. |
+| Intelligence artificielle | Utiliser Cortex AI dans l’éditeur existant pour comprendre le code, proposer des changements et travailler dans le projet sélectionné. |
 
-Other platforms are not yet available:
+## Cortex AI
 
-- Web ([tracking discussion](https://github.com/zed-industries/zed/discussions/26195))
+**Cortex AI** est l’intégration agentique de Cortex Studio. Elle utilise le système d’agents externes et le protocole ACP déjà présents dans l’éditeur pour afficher les conversations, les demandes de fichiers, les commandes du terminal, les permissions et la revue des diffs dans les composants existants.
 
-### Developing Cortex Studio
+Le runtime technique ACP utilisé par Cortex AI est OpenHands. Il reste accessible avec la commande officielle `uvx openhands acp`, tandis que son identité visible dans Cortex Studio est **Cortex AI**. Cette séparation permet de conserver la compatibilité technique et de présenter une identité produit cohérente.
 
-- [Building Cortex Studio for macOS](./docs/src/development/macos.md)
-- [Building Cortex Studio for Linux](./docs/src/development/linux.md)
-- [Building Cortex Studio for Windows](./docs/src/development/windows.md)
+Pour activer Cortex AI, ajoutez cette configuration dans le fichier de réglages :
 
-### Contributing
+```jsonc
+{
+  "agent_servers": {
+    "Cortex AI": {
+      "type": "custom",
+      "command": "uvx",
+      "args": ["openhands", "acp"],
+      "env": {}
+    }
+  }
+}
+```
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for ways you can contribute to Cortex Studio.
+Pour protéger le projet, utilisez Cortex AI dans un workspace dédié, un Dev Container ou un environnement distant pris en charge par l’éditeur. Les actions sur les fichiers, le terminal et les ressources sensibles doivent rester soumises aux permissions existantes et à la revue des changements.
 
-Also... we're hiring! Check out our [jobs](https://zed.dev/jobs) page for open roles.
+## Installation
 
-### Licensing
+Cortex Studio est prévu pour macOS, Linux et Windows. Les instructions de développement et de compilation sont disponibles ici :
 
-Zed source code is licensed primarily under GPL-3.0-or-later, with Apache-2.0 components where marked.
+- [Compiler Cortex Studio pour macOS](./docs/src/development/macos.md)
+- [Compiler Cortex Studio pour Linux](./docs/src/development/linux.md)
+- [Compiler Cortex Studio pour Windows](./docs/src/development/windows.md)
 
-License information for third party dependencies must be correctly provided for CI to pass.
+Les instructions relatives aux agents externes et à Cortex AI sont disponibles dans [la documentation des agents](./docs/src/ai/external-agents.md).
 
-We use [`cargo-about`](https://github.com/EmbarkStudios/cargo-about) to automatically comply with open source licenses. If CI is failing, check the following:
+## Développement du projet
 
-- Is it showing a `no license specified` error for a crate you've created? If so, add `publish = false` under `[package]` in your crate's Cargo.toml.
-- Is the error `failed to satisfy license requirements` for a dependency? If so, first determine what license the project has and whether this system is sufficient to comply with this license's requirements. If you're unsure, ask a lawyer. Once you've verified that this system is acceptable add the license's SPDX identifier to the `accepted` array in `script/licenses/zed-licenses.toml`.
-- Is `cargo-about` unable to find the license for a dependency? If so, add a clarification field at the end of `script/licenses/zed-licenses.toml`, as specified in the [cargo-about book](https://embarkstudios.github.io/cargo-about/cli/generate/config.html#crate-configuration).
+Avant de contribuer, lisez [CONTRIBUTING.md](./CONTRIBUTING.md), installez les dépendances nécessaires à votre plateforme et vérifiez les changements avec les outils du projet.
 
-## Sponsorship
+Chaque modification importante doit rester ciblée, être examinée dans son diff, être validée par les tests disponibles et être publiée dans une branche dédiée avant toute fusion.
 
-Cortex Studio is currently developed as a rebranded fork of the Zed open-source project.
+## Principes du projet
 
-If you’d like to financially support the project, you can do so via GitHub Sponsors.
-Sponsorship details for Cortex Studio will be published with the project’s new service and governance information.
-There are no perks or entitlements associated with sponsorship.
+Cortex Studio privilégie la rapidité d’ouverture, la réactivité de l’édition, la clarté des changements et le contrôle de l’utilisateur. Les fonctions lourdes doivent être activées à la demande. Les assistants agentiques doivent afficher leurs actions, respecter les permissions du workspace et permettre l’arrêt immédiat d’une session.
+
+Aucun agent ne doit modifier silencieusement un fichier sensible, exécuter une action destructive ou sortir du workspace autorisé sans une règle explicite et vérifiable.
+
+## Licence et attributions
+
+Le code source est distribué principalement sous licence GPL-3.0-or-later, avec des composants Apache-2.0 lorsqu’ils sont identifiés comme tels. Les licences des dépendances et les notices d’attribution doivent être conservées et vérifiées avant chaque distribution.
+
+Cortex Studio et Cortex AI sont les identités utilisées pour ce projet. Les composants et runtimes open source intégrés conservent leurs notices, leurs licences et leurs attributions respectives.
+
+## Créateur du projet
+
+**Abdoulaye Coumbassa**
+
+Créateur et initiateur de l’identité Cortex Studio, du rebranding et de l’intégration Cortex AI.
