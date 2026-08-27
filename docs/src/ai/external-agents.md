@@ -9,9 +9,9 @@ External Agents are agents that integrate with Cortex Studio through the [Agent 
 
 Use [Terminal Threads](./terminal-threads.md) instead when you want to run a CLI or TUI directly in a terminal-backed thread.
 
-External Agents run through their own process and provider relationship. Billing, legal terms, retention, and data handling are between you and the agent provider. Zed does not charge for External Agents.
+External Agents run through their own process and provider relationship. Billing, legal terms, retention, and data handling are between you and the agent provider. Cortex Studio does not charge for External Agents.
 
-For Zed-hosted models and Zed-managed AI features, see [AI Privacy](./privacy-and-security.md) and [Feedback and Training Data](./ai-improvement.md).
+For Cortex Studio-hosted models and Cortex Studio-managed AI features, see [AI Privacy](./privacy-and-security.md) and [Feedback and Training Data](./ai-improvement.md).
 
 ## Install from the ACP Registry {#registry}
 
@@ -97,7 +97,7 @@ To configure Poolside from the terminal instead, install the [Poolside Agent CLI
 pool acp setup --editor zed
 ```
 
-This command always writes to `~/.config/zed/settings.json`, which is Zed's settings file on macOS and on Linux without a custom `XDG_CONFIG_HOME`. On Windows, or with a custom config directory, install from the registry or use the manual configuration below instead. You do not need to restart Zed. It detects the settings change automatically. Select `Poolside` from the new-thread menu.
+This command always writes to `~/.config/zed/settings.json`, which remains the compatibility settings file on macOS and on Linux without a custom `XDG_CONFIG_HOME`. On Windows, or with a custom config directory, install from the registry or use the manual configuration below instead. You do not need to restart Cortex Studio. It detects the settings change automatically. Select `Poolside` from the new-thread menu.
 
 To configure it manually, install the [Poolside Agent CLI](https://github.com/poolsideai/pool), make sure `pool` is on your `PATH`, then add it as a [Custom Agent](#custom-agents):
 
@@ -113,7 +113,7 @@ To configure it manually, install the [Poolside Agent CLI](https://github.com/po
 }
 ```
 
-See [Poolside's Zed documentation](https://docs.poolside.ai/tools/zed) for more setup details.
+See [Poolside's Cortex Studio documentation](https://docs.poolside.ai/tools/zed) for more setup details.
 
 ## OpenHands {#openhands}
 
